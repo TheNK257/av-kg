@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AV Knowledge Graph</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="header">
+    <h1>AV Knowledge Graph</h1>
+    <span id="status">⏳ Connecting…</span>
+    <span id="frame-info"></span>
+  </div>
+  <div id="container">
+    <div id="graph"></div>
+    <div id="panel">
+      <h3>Properties</h3>
+      <p class="hint">Click a node or edge to inspect</p>
+      <div id="panel-content"></div>
+    </div>
+  </div>
+  <script src="/static/graph.js"></script>
+</body>
+</html>

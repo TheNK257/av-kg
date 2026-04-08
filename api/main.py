@@ -4,8 +4,12 @@ from fastapi.staticfiles import StaticFiles
 from neo4j import GraphDatabase
 from config.settings import NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
 from api.websocket import graph_ws_endpoint
+from fastapi.responses import FileResponse
+
 
 app = FastAPI(title="AV Knowledge Graph API")
+import os
+app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "..", "frontend")), name="static")
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,3 +48,7 @@ def get_current_graph():
 @app.websocket("/ws/graph")
 async def websocket_endpoint(websocket: WebSocket):
     await graph_ws_endpoint(websocket, driver)
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse(os.path.join(os.path.dirname(__file__), "..", "frontend", "index.html"))
