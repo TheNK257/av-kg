@@ -1,0 +1,8 @@
+nuscenes-devkit
+neo4j
+fastapi
+uvicorn[standard]
+python-dotenv
+websockets
+httpx
+pytest
