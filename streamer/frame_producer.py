@@ -1,5 +1,4 @@
 import time
-from nuscenes.nuscenes import NuScenes
 from ingestion.nuscenes_loader import get_nusc, iter_scene
 
 
