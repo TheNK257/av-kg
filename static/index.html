@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Driven Telemetry Monitor</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -38,11 +41,13 @@
             overflow: hidden;
         }
 
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         .grid-bg {
             background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
-                              linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+                linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
@@ -53,21 +58,50 @@
             overflow: hidden;
         }
 
-        .panel-border { border: 1px solid var(--color-border); }
-        
-        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: var(--color-bg-app); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: var(--color-border); }
+        .panel-border {
+            border: 1px solid var(--color-border);
+        }
 
-        .status-dot { width: 8px; height: 8px; flex-shrink: 0; }
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: var(--color-bg-app);
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            flex-shrink: 0;
+        }
 
         @keyframes pulse-warning {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        .warning-pulse { animation: pulse-warning 1s infinite; }
-        [x-cloak] { display: none !important; }
+
+        .warning-pulse {
+            animation: pulse-warning 1s infinite;
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
 
         /* Seek bar styling */
         input[type=range] {
@@ -78,6 +112,7 @@
             outline: none;
             border-radius: 0;
         }
+
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -104,7 +139,9 @@
         }
 
         /* Override vis-network canvas background */
-        #kg-vis-container canvas { display: block; }
+        #kg-vis-container canvas {
+            display: block;
+        }
 
         .kg-inspector {
             width: 280px;
@@ -121,7 +158,9 @@
             padding: 10px 12px;
         }
 
-        .kg-inspector-section:last-child { border-bottom: none; }
+        .kg-inspector-section:last-child {
+            border-bottom: none;
+        }
 
         .kg-inspector-title {
             font-size: 9px;
@@ -132,7 +171,11 @@
             margin-bottom: 8px;
         }
 
-        .kg-prop-table { width: 100%; border-collapse: collapse; }
+        .kg-prop-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
         .kg-prop-table td {
             font-size: 10px;
             font-family: 'JetBrains Mono', monospace;
@@ -140,7 +183,11 @@
             border-bottom: 1px solid #1A1B1E;
             color: #E0E0E0;
         }
-        .kg-prop-table td:first-child { color: #5C5E62; width: 45%; }
+
+        .kg-prop-table td:first-child {
+            color: #5C5E62;
+            width: 45%;
+        }
 
         .kg-hint {
             font-size: 10px;
@@ -154,8 +201,14 @@
             overflow-y: auto;
             max-height: 180px;
         }
-        .kg-filter-list::-webkit-scrollbar { width: 3px; }
-        .kg-filter-list::-webkit-scrollbar-thumb { background: #2A2B2E; }
+
+        .kg-filter-list::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .kg-filter-list::-webkit-scrollbar-thumb {
+            background: #2A2B2E;
+        }
 
         .kg-filter-item {
             display: flex;
@@ -167,9 +220,15 @@
             padding: 3px 0;
             cursor: pointer;
         }
-        .kg-filter-item input { accent-color: #00E5FF; cursor: pointer; }
+
+        .kg-filter-item input {
+            accent-color: #00E5FF;
+            cursor: pointer;
+        }
+
         .kg-legend-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
             display: inline-block;
@@ -184,6 +243,7 @@
             gap: 10px;
             flex-shrink: 0;
         }
+
         .kg-frame-btn {
             background: #1A1B1E;
             border: 1px solid #2A2B2E;
@@ -196,15 +256,34 @@
             letter-spacing: 0.5px;
             transition: background 0.15s;
         }
-        .kg-frame-btn:hover { background: #2A2B2E; }
-        .kg-frame-btn.active { background: #00E5FF; color: #000; border-color: #00E5FF; }
-        .kg-frame-btn:disabled { opacity: 0.3; cursor: default; }
+
+        .kg-frame-btn:hover {
+            background: #2A2B2E;
+        }
+
+        .kg-frame-btn.active {
+            background: #00E5FF;
+            color: #000;
+            border-color: #00E5FF;
+        }
+
+        .kg-frame-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+
         .kg-scroll-panel {
             flex: 1;
             overflow-y: auto;
         }
-        .kg-scroll-panel::-webkit-scrollbar { width: 3px; }
-        .kg-scroll-panel::-webkit-scrollbar-thumb { background: #2A2B2E; }
+
+        .kg-scroll-panel::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .kg-scroll-panel::-webkit-scrollbar-thumb {
+            background: #2A2B2E;
+        }
     </style>
 </head>
 
@@ -218,9 +297,16 @@
                 <span class="text-[14px] font-semibold tracking-[1.5px] uppercase">Telemetry.OS</span>
             </div>
             <nav class="flex h-12">
-                <button @click="activeTab = 'dashboard'" :class="activeTab === 'dashboard' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'" class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Dashboard</button>
-                <button @click="activeTab = 'perception'" :class="activeTab === 'perception' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'" class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Perception</button>
-                <button @click="activeTab = 'knowledge'" :class="activeTab === 'knowledge' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'" class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Knowledge Graph</button>
+                <button @click="activeTab = 'dashboard'"
+                    :class="activeTab === 'dashboard' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'"
+                    class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Dashboard</button>
+                <button @click="activeTab = 'perception'"
+                    :class="activeTab === 'perception' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'"
+                    class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Perception</button>
+                <button @click="activeTab = 'knowledge'"
+                    :class="activeTab === 'knowledge' ? 'border-b-2 border-[#00E5FF] text-white' : 'text-[#5C5E62]'"
+                    class="px-4 text-[11px] font-medium uppercase tracking-widest transition-colors hover:text-white">Knowledge
+                    Graph</button>
             </nav>
         </div>
         <div class="flex items-center gap-4 font-mono text-[11px]">
@@ -228,7 +314,7 @@
             <span class="text-[#5C5E62]">|</span>
             <!-- Scene selector in header -->
             <select x-model="selectedScene" @change="onSceneChange()"
-                    class="bg-[#0B0B0C] border border-[#2A2B2E] text-[#E0E0E0] text-[10px] font-mono px-2 py-1 outline-none">
+                class="bg-[#0B0B0C] border border-[#2A2B2E] text-[#E0E0E0] text-[10px] font-mono px-2 py-1 outline-none">
                 <option value="" disabled>SELECT SCENE</option>
                 <template x-for="scene in scenes" :key="scene.token">
                     <option :value="scene.token" x-text="scene.name"></option>
@@ -285,7 +371,9 @@
 
                 <!-- Camera viewport -->
                 <div class="viewport flex-1">
-                    <div class="absolute top-2 left-2 z-10 bg-black/60 px-2 py-1 text-[10px] font-mono text-[#00E5FF] border border-[#00E5FF]">CAM_FRONT</div>
+                    <div
+                        class="absolute top-2 left-2 z-10 bg-black/60 px-2 py-1 text-[10px] font-mono text-[#00E5FF] border border-[#00E5FF]">
+                        CAM_FRONT</div>
                     <div class="absolute top-2 right-2 z-10 font-mono text-[10px] text-[#5C5E62]">
                         FRAME <span x-text="currentFrame"></span> / <span x-text="totalFrames"></span>
                     </div>
@@ -301,15 +389,14 @@
                 <div class="bg-[#141517] panel-border p-3 flex flex-col gap-2">
                     <div class="flex items-center gap-3">
                         <!-- Play / Pause button -->
-                        <button
-                            @click="isPlaying ? pause() : play()"
-                            :disabled="!selectedScene"
+                        <button @click="isPlaying ? pause() : play()" :disabled="!selectedScene"
                             class="bg-[#00E5FF] text-black text-[10px] font-bold px-4 py-1.5 uppercase disabled:opacity-30 disabled:cursor-not-allowed"
                             x-text="isPlaying ? '⏸ PAUSE' : '▶ PLAY'">
                         </button>
 
                         <!-- Status -->
-                        <span class="font-mono text-[10px]" :class="isPlaying ? 'text-[#00FF66]' : 'text-[#5C5E62]'" x-text="statusText"></span>
+                        <span class="font-mono text-[10px]" :class="isPlaying ? 'text-[#00FF66]' : 'text-[#5C5E62]'"
+                            x-text="statusText"></span>
 
                         <div class="flex-1"></div>
 
@@ -320,18 +407,14 @@
                     </div>
 
                     <!-- Seek bar -->
-                    <input
-                        type="range"
-                        class="w-full"
-                        :max="totalFrames > 0 ? totalFrames - 1 : 0"
-                        :value="currentFrame"
-                        @input="seek($event.target.value)"
-                        :disabled="totalFrames === 0">
+                    <input type="range" class="w-full" :max="totalFrames > 0 ? totalFrames - 1 : 0"
+                        :value="currentFrame" @input="seek($event.target.value)" :disabled="totalFrames === 0">
                 </div>
 
                 <!-- Radar panel -->
                 <div class="viewport h-40 flex flex-col">
-                    <div class="absolute top-2 left-2 text-[11px] text-[#5C5E62] uppercase font-semibold z-10">Radar Target Track</div>
+                    <div class="absolute top-2 left-2 text-[11px] text-[#5C5E62] uppercase font-semibold z-10">Radar
+                        Target Track</div>
                     <canvas id="radar-canvas" class="w-full h-full"></canvas>
                 </div>
             </div>
@@ -348,7 +431,8 @@
                             <span class="text-[#00E5FF]" x-text="heading.toFixed(2) + '°'"></span>
                         </div>
                         <div class="w-full h-1 bg-[#2A2B2E]">
-                            <div class="h-full bg-[#00E5FF] transition-all duration-300" :style="`width: ${(heading / 360) * 100}%`"></div>
+                            <div class="h-full bg-[#00E5FF] transition-all duration-300"
+                                :style="`width: ${(heading / 360) * 100}%`"></div>
                         </div>
                         <div class="flex justify-between items-center mt-2">
                             <span class="text-[#5C5E62]">SPEED</span>
@@ -371,7 +455,8 @@
 
                 <!-- Object Detections -->
                 <div class="bg-[#141517] panel-border flex flex-col overflow-hidden" style="height: 340px;">
-                    <div class="p-2 border-b border-[#2A2B2E] text-[11px] text-[#5C5E62] uppercase font-semibold flex justify-between">
+                    <div
+                        class="p-2 border-b border-[#2A2B2E] text-[11px] text-[#5C5E62] uppercase font-semibold flex justify-between">
                         <span>Object Detections</span>
                         <span x-text="objects.length + ' tracked'"></span>
                     </div>
@@ -398,9 +483,12 @@
 
                 <!-- Event Logs -->
                 <div class="bg-[#141517] panel-border flex flex-col overflow-hidden" style="height: 140px;">
-                    <div class="p-2 border-b border-[#2A2B2E] text-[11px] text-[#5C5E62] uppercase font-semibold">Event Logs</div>
-                    <div id="event-log" class="p-2 font-mono text-[10px] space-y-1 overflow-y-auto custom-scroll flex-1 bg-black">
-                        <div class="text-[#5C5E62]">[--:--:--] <span class="text-[#00FF66]">INFO</span> System ready</div>
+                    <div class="p-2 border-b border-[#2A2B2E] text-[11px] text-[#5C5E62] uppercase font-semibold">Event
+                        Logs</div>
+                    <div id="event-log"
+                        class="p-2 font-mono text-[10px] space-y-1 overflow-y-auto custom-scroll flex-1 bg-black">
+                        <div class="text-[#5C5E62]">[--:--:--] <span class="text-[#00FF66]">INFO</span> System ready
+                        </div>
                         <div class="text-[#E0E0E0] animate-pulse">_</div>
                     </div>
                 </div>
@@ -413,7 +501,8 @@
                 <div class="absolute inset-0 grid-bg opacity-20"></div>
                 <div class="absolute top-4 right-4 flex gap-2 z-10">
                     <button class="bg-[#00E5FF] text-black text-[10px] font-bold px-3 py-1">CAM</button>
-                    <button class="bg-[#141517] border border-[#2A2B2E] text-[#5C5E62] text-[10px] font-bold px-3 py-1">RADAR</button>
+                    <button
+                        class="bg-[#141517] border border-[#2A2B2E] text-[#5C5E62] text-[10px] font-bold px-3 py-1">RADAR</button>
                 </div>
                 <!-- Live camera feed on perception tab too -->
                 <img id="camera-feed-perception" src="" alt="Perception feed" class="w-full h-full object-cover">
@@ -449,13 +538,17 @@
         <div x-show="activeTab === 'knowledge'" class="h-full flex flex-col" x-cloak>
 
             <!-- KG top bar -->
-            <div class="h-8 flex items-center justify-between px-3 bg-[#141517] border-b border-[#2A2B2E] flex-shrink-0">
+            <div
+                class="h-8 flex items-center justify-between px-3 bg-[#141517] border-b border-[#2A2B2E] flex-shrink-0">
                 <div class="flex items-center gap-3">
-                    <span class="text-[10px] font-mono text-[#00E5FF] border border-[#00E5FF] px-2 py-0.5">KNOWLEDGE GRAPH</span>
-                    <span class="font-mono text-[10px] text-[#5C5E62]">FRAME <span id="kg-frame-counter-label">—</span></span>
+                    <span class="text-[10px] font-mono text-[#00E5FF] border border-[#00E5FF] px-2 py-0.5">KNOWLEDGE
+                        GRAPH</span>
+                    <span class="font-mono text-[10px] text-[#5C5E62]">FRAME <span
+                            id="kg-frame-counter-label">—</span></span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="kg-vis-status" class="font-mono text-[10px] bg-[#1A1B1E] px-2 py-0.5 text-[#5C5E62]">⏳ Connecting…</span>
+                    <span id="kg-vis-status" class="font-mono text-[10px] bg-[#1A1B1E] px-2 py-0.5 text-[#5C5E62]">⏳
+                        Connecting…</span>
                     <span id="kg-frame-info" class="font-mono text-[10px] text-[#5C5E62]"></span>
                 </div>
             </div>
@@ -529,7 +622,8 @@
     </main>
 
     <!-- FOOTER STATUS BAR -->
-    <footer class="h-6 bg-[#0B0B0C] border-t border-[#2A2B2E] flex items-center justify-between px-4 text-[9px] font-mono text-[#5C5E62]">
+    <footer
+        class="h-6 bg-[#0B0B0C] border-t border-[#2A2B2E] flex items-center justify-between px-4 text-[9px] font-mono text-[#5C5E62]">
         <div class="flex gap-4">
             <span>FRAME: <span x-text="currentFrame"></span></span>
             <span>RADAR PTS: <span x-text="radarPoints.length"></span></span>
@@ -542,756 +636,756 @@
     </footer>
 
     <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('telemetry', () => ({
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('telemetry', () => ({
 
-            // UI state
-            activeTab: 'dashboard',
+                // UI state
+                activeTab: 'dashboard',
 
-            // Live telemetry state
-            speed: 0.0,
-            heading: 0.0,
-            position: { x: 0, y: 0, z: 0 },
-            radarPoints: [],
-            currentFrame: 0,
-            totalFrames: 0,
-            isPlaying: false,
-            statusText: 'DISCONNECTED',
+                // Live telemetry state
+                speed: 0.0,
+                heading: 0.0,
+                position: { x: 0, y: 0, z: 0 },
+                radarPoints: [],
+                currentFrame: 0,
+                totalFrames: 0,
+                isPlaying: false,
+                statusText: 'DISCONNECTED',
 
-            // Scene + objects
-            scenes: [],
-            selectedScene: '',
-            objects: [],
+                // Scene + objects
+                scenes: [],
+                selectedScene: '',
+                objects: [],
 
-            // WebSocket
-            ws: null,
+                // WebSocket
+                ws: null,
 
-            // Init — runs on page load
-            async init() {
-                await this.loadScenes();
-                this.$nextTick(() => this.initRadarCanvas());
-            },
+                // Init — runs on page load
+                async init() {
+                    await this.loadScenes();
+                    this.$nextTick(() => this.initRadarCanvas());
+                },
 
-            // Load scene list from backend
-            async loadScenes() {
-                try {
-                    const res  = await fetch('http://localhost:8001/api/scenes');
-                    const data = await res.json();
-                    this.scenes = data.scenes;
-                    if (this.scenes.length > 0) {
-                        this.selectedScene = this.scenes[0].token;
-                        await this.loadSampleCount(this.selectedScene);
-                        this.addLog('INFO', `Loaded ${this.scenes.length} scenes`);
+                // Load scene list from backend
+                async loadScenes() {
+                    try {
+                        const res = await fetch('http://localhost:8001/api/scenes');
+                        const data = await res.json();
+                        this.scenes = data.scenes;
+                        if (this.scenes.length > 0) {
+                            this.selectedScene = this.scenes[0].token;
+                            await this.loadSampleCount(this.selectedScene);
+                            this.addLog('INFO', `Loaded ${this.scenes.length} scenes`);
+                        }
+                    } catch (e) {
+                        this.addLog('ERROR', 'Cannot reach backend at localhost:8001');
+                        console.error(e);
                     }
-                } catch (e) {
-                    this.addLog('ERROR', 'Cannot reach backend at localhost:8001');
-                    console.error(e);
-                }
-            },
+                },
 
-            // Get total frame count for seek bar
-            async loadSampleCount(sceneToken) {
-                try {
-                    const res  = await fetch(`http://localhost:8001/api/samples/${sceneToken}`);
-                    const data = await res.json();
-                    this.totalFrames  = data.sample_count;
+                // Get total frame count for seek bar
+                async loadSampleCount(sceneToken) {
+                    try {
+                        const res = await fetch(`http://localhost:8001/api/samples/${sceneToken}`);
+                        const data = await res.json();
+                        this.totalFrames = data.sample_count;
+                        this.currentFrame = 0;
+                        this.addLog('INFO', `Scene loaded: ${data.sample_count} frames`);
+                    } catch (e) {
+                        console.error(e);
+                    }
+                },
+
+                // Play — open WebSocket and stream
+                play() {
+                    if (this.ws) this.ws.close();
+                    if (!this.selectedScene) return;
+
+                    this.ws = new WebSocket('ws://localhost:8001/ws/stream');
+                    this.ws.binaryType = 'blob';
+
+                    this.ws.onopen = () => {
+                        this.statusText = 'STREAMING';
+                        this.isPlaying = true;
+                        this.addLog('INFO', 'Stream started');
+                        this.ws.send(JSON.stringify({
+                            scene_token: this.selectedScene,
+                            start_index: this.currentFrame,
+                        }));
+                    };
+
+                    this.ws.onmessage = (e) => {
+                        if (e.data instanceof Blob) {
+                            // Binary — camera frame
+                            const url = URL.createObjectURL(e.data);
+
+                            const img = document.getElementById('camera-feed');
+                            if (img) {
+                                img.onload = () => URL.revokeObjectURL(url);
+                                img.src = url;
+                            }
+
+                            // Mirror to perception tab feed
+                            const img2 = document.getElementById('camera-feed-perception');
+                            if (img2) img2.src = img ? img.src : url;
+
+                        } else {
+                            // Text — telemetry JSON
+                            const meta = JSON.parse(e.data);
+
+                            if (meta.action === 'end') {
+                                this.isPlaying = false;
+                                this.statusText = 'COMPLETE';
+                                this.addLog('INFO', 'Playback complete');
+                                return;
+                            }
+
+                            if (meta.error) {
+                                this.addLog('ERROR', meta.error);
+                                return;
+                            }
+
+                            // Update frame index + seek bar
+                            this.currentFrame = meta.index;
+
+                            // Update radar
+                            if (meta.radar) {
+                                this.radarPoints = meta.radar;
+                                this.drawRadar();
+                            }
+
+                            // Update IMU
+                            if (meta.imu) {
+                                const t = meta.imu.translation;
+                                this.position = { x: t.x, y: t.y, z: t.z };
+                                this.heading = meta.imu.heading_deg;
+
+                                // Speed: magnitude of XY translation from origin (rough proxy)
+                                this.speed = parseFloat(
+                                    Math.sqrt(t.x * t.x + t.y * t.y) * 0.01
+                                ).toFixed(2) * 1;
+                            }
+
+                            // Update object detections from live annotations
+                            if (meta.annotations) {
+                                this.objects = meta.annotations;
+                            }
+                        }
+                    };
+
+                    this.ws.onerror = (e) => {
+                        this.addLog('ERROR', 'WebSocket error');
+                        console.error(e);
+                    };
+
+                    this.ws.onclose = () => {
+                        this.isPlaying = false;
+                        if (this.statusText === 'STREAMING') {
+                            this.statusText = 'DISCONNECTED';
+                        }
+                    };
+                },
+
+                // Pause
+                pause() {
+                    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                        this.ws.send(JSON.stringify({ action: 'pause' }));
+                    }
+                    this.isPlaying = false;
+                    this.statusText = 'PAUSED';
+                    this.addLog('INFO', 'Paused at frame ' + this.currentFrame);
+                },
+
+                // Seek
+                seek(index) {
+                    this.currentFrame = parseInt(index);
+                    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                        this.ws.send(JSON.stringify({ action: 'seek', index: this.currentFrame }));
+                    }
+                },
+
+                // Scene change
+                async onSceneChange() {
+                    if (this.ws) this.ws.close();
+                    this.isPlaying = false;
+                    this.statusText = 'DISCONNECTED';
                     this.currentFrame = 0;
-                    this.addLog('INFO', `Scene loaded: ${data.sample_count} frames`);
-                } catch (e) {
-                    console.error(e);
-                }
-            },
+                    this.radarPoints = [];
+                    this.clearRadar();
+                    await this.loadSampleCount(this.selectedScene);
+                },
 
-            // Play — open WebSocket and stream
-            play() {
-                if (this.ws) this.ws.close();
-                if (!this.selectedScene) return;
+                // Radar canvas setup
+                initRadarCanvas() {
+                    const canvas = document.getElementById('radar-canvas');
+                    if (!canvas) return;
+                    canvas.width = canvas.offsetWidth || 400;
+                    canvas.height = canvas.offsetHeight || 160;
+                    this.clearRadar();
+                },
 
-                this.ws = new WebSocket('ws://localhost:8001/ws/stream');
-                this.ws.binaryType = 'blob';
+                // Draw radar points + velocity vectors
+                drawRadar() {
+                    const canvas = document.getElementById('radar-canvas');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    const W = canvas.width;
+                    const H = canvas.height;
+                    const cx = W / 2;
+                    const cy = H / 2;
+                    const scale = Math.min(W, H) / 80; // 40m range
 
-                this.ws.onopen = () => {
-                    this.statusText = 'STREAMING';
-                    this.isPlaying  = true;
-                    this.addLog('INFO', 'Stream started');
-                    this.ws.send(JSON.stringify({
-                        scene_token: this.selectedScene,
-                        start_index: this.currentFrame,
-                    }));
-                };
+                    ctx.clearRect(0, 0, W, H);
 
-                this.ws.onmessage = (e) => {
-                    if (e.data instanceof Blob) {
-                        // Binary — camera frame
-                        const url = URL.createObjectURL(e.data);
+                    // Background
+                    ctx.fillStyle = '#000000';
+                    ctx.fillRect(0, 0, W, H);
 
-                        const img = document.getElementById('camera-feed');
-                        if (img) {
-                            img.onload = () => URL.revokeObjectURL(url);
-                            img.src = url;
-                        }
+                    // Range rings
+                    ctx.strokeStyle = 'rgba(0,229,255,0.1)';
+                    ctx.lineWidth = 0.5;
+                    [10, 20, 30].forEach(r => {
+                        ctx.beginPath();
+                        ctx.arc(cx, cy, r * scale, 0, Math.PI * 2);
+                        ctx.stroke();
+                    });
 
-                        // Mirror to perception tab feed
-                        const img2 = document.getElementById('camera-feed-perception');
-                        if (img2) img2.src = img ? img.src : url;
+                    // Crosshairs
+                    ctx.strokeStyle = 'rgba(0,229,255,0.08)';
+                    ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
 
-                    } else {
-                        // Text — telemetry JSON
-                        const meta = JSON.parse(e.data);
-
-                        if (meta.action === 'end') {
-                            this.isPlaying  = false;
-                            this.statusText = 'COMPLETE';
-                            this.addLog('INFO', 'Playback complete');
-                            return;
-                        }
-
-                        if (meta.error) {
-                            this.addLog('ERROR', meta.error);
-                            return;
-                        }
-
-                        // Update frame index + seek bar
-                        this.currentFrame = meta.index;
-
-                        // Update radar
-                        if (meta.radar) {
-                            this.radarPoints = meta.radar;
-                            this.drawRadar();
-                        }
-
-                        // Update IMU
-                        if (meta.imu) {
-                            const t = meta.imu.translation;
-                            this.position = { x: t.x, y: t.y, z: t.z };
-                            this.heading  = meta.imu.heading_deg;
-
-                            // Speed: magnitude of XY translation from origin (rough proxy)
-                            this.speed = parseFloat(
-                                Math.sqrt(t.x * t.x + t.y * t.y) * 0.01
-                            ).toFixed(2) * 1;
-                        }
-
-                        // Update object detections from live annotations
-                        if (meta.annotations) {
-                            this.objects = meta.annotations;
-                        }
-                    }
-                };
-
-                this.ws.onerror = (e) => {
-                    this.addLog('ERROR', 'WebSocket error');
-                    console.error(e);
-                };
-
-                this.ws.onclose = () => {
-                    this.isPlaying  = false;
-                    if (this.statusText === 'STREAMING') {
-                        this.statusText = 'DISCONNECTED';
-                    }
-                };
-            },
-
-            // Pause
-            pause() {
-                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-                    this.ws.send(JSON.stringify({ action: 'pause' }));
-                }
-                this.isPlaying  = false;
-                this.statusText = 'PAUSED';
-                this.addLog('INFO', 'Paused at frame ' + this.currentFrame);
-            },
-
-            // Seek
-            seek(index) {
-                this.currentFrame = parseInt(index);
-                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-                    this.ws.send(JSON.stringify({ action: 'seek', index: this.currentFrame }));
-                }
-            },
-
-            // Scene change
-            async onSceneChange() {
-                if (this.ws) this.ws.close();
-                this.isPlaying    = false;
-                this.statusText   = 'DISCONNECTED';
-                this.currentFrame = 0;
-                this.radarPoints  = [];
-                this.clearRadar();
-                await this.loadSampleCount(this.selectedScene);
-            },
-
-            // Radar canvas setup
-            initRadarCanvas() {
-                const canvas = document.getElementById('radar-canvas');
-                if (!canvas) return;
-                canvas.width  = canvas.offsetWidth  || 400;
-                canvas.height = canvas.offsetHeight || 160;
-                this.clearRadar();
-            },
-
-            // Draw radar points + velocity vectors
-            drawRadar() {
-                const canvas = document.getElementById('radar-canvas');
-                if (!canvas) return;
-                const ctx   = canvas.getContext('2d');
-                const W     = canvas.width;
-                const H     = canvas.height;
-                const cx    = W / 2;
-                const cy    = H / 2;
-                const scale = Math.min(W, H) / 80; // 40m range
-
-                ctx.clearRect(0, 0, W, H);
-
-                // Background
-                ctx.fillStyle = '#000000';
-                ctx.fillRect(0, 0, W, H);
-
-                // Range rings
-                ctx.strokeStyle = 'rgba(0,229,255,0.1)';
-                ctx.lineWidth   = 0.5;
-                [10, 20, 30].forEach(r => {
+                    // Ego vehicle
+                    ctx.fillStyle = '#ffffff';
                     ctx.beginPath();
-                    ctx.arc(cx, cy, r * scale, 0, Math.PI * 2);
-                    ctx.stroke();
-                });
-
-                // Crosshairs
-                ctx.strokeStyle = 'rgba(0,229,255,0.08)';
-                ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
-
-                // Ego vehicle
-                ctx.fillStyle = '#ffffff';
-                ctx.beginPath();
-                ctx.arc(cx, cy, 4, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Radar returns + velocity vectors
-                this.radarPoints.forEach(p => {
-                    const px = cx + p.x * scale;
-                    const py = cy - p.y * scale;
-
-                    // Return dot
-                    ctx.fillStyle = '#00E5FF';
-                    ctx.beginPath();
-                    ctx.arc(px, py, 3, 0, Math.PI * 2);
+                    ctx.arc(cx, cy, 4, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Velocity vector arrow
-                    const vscale = scale * 0.8;
-                    const ex = px + p.vx * vscale;
-                    const ey = py - p.vy * vscale;
-                    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+                    // Radar returns + velocity vectors
+                    this.radarPoints.forEach(p => {
+                        const px = cx + p.x * scale;
+                        const py = cy - p.y * scale;
 
-                    if (speed > 0.3) {
-                        ctx.strokeStyle = '#00FF66';
-                        ctx.lineWidth   = 1;
+                        // Return dot
+                        ctx.fillStyle = '#00E5FF';
                         ctx.beginPath();
-                        ctx.moveTo(px, py);
-                        ctx.lineTo(ex, ey);
-                        ctx.stroke();
-
-                        // Arrowhead
-                        const angle = Math.atan2(ey - py, ex - px);
-                        ctx.fillStyle = '#00FF66';
-                        ctx.beginPath();
-                        ctx.moveTo(ex, ey);
-                        ctx.lineTo(ex - 5 * Math.cos(angle - 0.4), ey - 5 * Math.sin(angle - 0.4));
-                        ctx.lineTo(ex - 5 * Math.cos(angle + 0.4), ey - 5 * Math.sin(angle + 0.4));
-                        ctx.closePath();
+                        ctx.arc(px, py, 3, 0, Math.PI * 2);
                         ctx.fill();
-                    }
-                });
-            },
 
-            // Clear radar to blank state
-            clearRadar() {
-                const canvas = document.getElementById('radar-canvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#000000';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            },
+                        // Velocity vector arrow
+                        const vscale = scale * 0.8;
+                        const ex = px + p.vx * vscale;
+                        const ey = py - p.vy * vscale;
+                        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
 
-            // Draw D3 knowledge graph
-            drawKnowledgeGraph() {
-                const svg = d3.select('#kg-svg');
-                if (svg.empty() || !this.objects.length) return;
+                        if (speed > 0.3) {
+                            ctx.strokeStyle = '#00FF66';
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(px, py);
+                            ctx.lineTo(ex, ey);
+                            ctx.stroke();
 
-                svg.selectAll('*').remove();
-
-                const W  = svg.node().clientWidth  || 800;
-                const H  = svg.node().clientHeight || 600;
-                const cx = W / 2;
-                const cy = H / 2;
-
-                // Color maps
-                const nodeColor = { pedestrian: '#00FF66', vehicle: '#7B61FF', barrier: '#FF9900' };
-                const edgeColor = { danger: '#FF2200', medium: '#FF9900', safe: '#2A2B2E' };
-
-                const g = svg.append('g');
-
-                // Direction quadrant labels
-                const dirLabels = [
-                    { label: 'AHEAD',  x: cx,       y: 40        },
-                    { label: 'BEHIND', x: cx,       y: H - 20    },
-                    { label: 'LEFT',   x: 40,       y: cy        },
-                    { label: 'RIGHT',  x: W - 40,   y: cy        },
-                ];
-                dirLabels.forEach(d => {
-                    g.append('text')
-                        .attr('x', d.x).attr('y', d.y)
-                        .attr('text-anchor', 'middle')
-                        .attr('fill', '#2A2B2E')
-                        .attr('font-size', 11)
-                        .attr('font-family', 'JetBrains Mono, monospace')
-                        .text(d.label);
-                });
-
-                // Proximity rings
-                [0.25, 0.5, 0.75].forEach(r => {
-                    g.append('circle')
-                        .attr('cx', cx).attr('cy', cy)
-                        .attr('r', Math.min(W, H) * r * 0.45)
-                        .attr('fill', 'none')
-                        .attr('stroke', '#1A1B1E')
-                        .attr('stroke-width', 0.5);
-                });
-
-                // Show only 10 closest objects
-                const visible = this.objects.slice(0, 10);
-                const maxDist = Math.max(...visible.map(o => o.dist_m), 1);
-
-                // Position each node by direction + distance
-                const dirOffset = { ahead: -Math.PI/2, right: 0, behind: Math.PI/2, left: Math.PI };
-                const spread    = { ahead: 0.6, behind: 0.6, left: 0.6, right: 0.6 };
-
-                // Group by direction to spread nodes within quadrant
-                const dirGroups = {};
-                visible.forEach(o => {
-                    if (!dirGroups[o.direction]) dirGroups[o.direction] = [];
-                    dirGroups[o.direction].push(o);
-                });
-
-                const nodePositions = {};
-                Object.entries(dirGroups).forEach(([dir, objs]) => {
-                    const base  = dirOffset[dir] || 0;
-                    const fan   = spread[dir] || 0.6;
-                    const total = objs.length;
-                    objs.forEach((o, i) => {
-                        const angleOffset = total > 1
-                            ? fan * (i / (total - 1) - 0.5)
-                            : 0;
-                        const angle  = base + angleOffset;
-                        const radius = (o.dist_m / maxDist) * Math.min(W, H) * 0.42;
-                        nodePositions[o.id] = {
-                            x: cx + radius * Math.cos(angle),
-                            y: cy + radius * Math.sin(angle),
-                        };
+                            // Arrowhead
+                            const angle = Math.atan2(ey - py, ex - px);
+                            ctx.fillStyle = '#00FF66';
+                            ctx.beginPath();
+                            ctx.moveTo(ex, ey);
+                            ctx.lineTo(ex - 5 * Math.cos(angle - 0.4), ey - 5 * Math.sin(angle - 0.4));
+                            ctx.lineTo(ex - 5 * Math.cos(angle + 0.4), ey - 5 * Math.sin(angle + 0.4));
+                            ctx.closePath();
+                            ctx.fill();
+                        }
                     });
-                });
+                },
 
-                // Draw edges from ego to each object
-                visible.forEach(o => {
-                    const pos = nodePositions[o.id];
-                    if (!pos) return;
-                    g.append('line')
-                        .attr('x1', cx).attr('y1', cy)
-                        .attr('x2', pos.x).attr('y2', pos.y)
-                        .attr('stroke', edgeColor[o.risk] || '#2A2B2E')
-                        .attr('stroke-width', o.risk === 'danger' ? 1.5 : 0.5)
-                        .attr('opacity', o.risk === 'danger' ? 0.9 : 0.4);
+                // Clear radar to blank state
+                clearRadar() {
+                    const canvas = document.getElementById('radar-canvas');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#000000';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                },
 
-                    // Distance label on edge midpoint
-                    g.append('text')
-                        .attr('x', (cx + pos.x) / 2)
-                        .attr('y', (cy + pos.y) / 2)
+                // Draw D3 knowledge graph
+                drawKnowledgeGraph() {
+                    const svg = d3.select('#kg-svg');
+                    if (svg.empty() || !this.objects.length) return;
+
+                    svg.selectAll('*').remove();
+
+                    const W = svg.node().clientWidth || 800;
+                    const H = svg.node().clientHeight || 600;
+                    const cx = W / 2;
+                    const cy = H / 2;
+
+                    // Color maps
+                    const nodeColor = { pedestrian: '#00FF66', vehicle: '#7B61FF', barrier: '#FF9900' };
+                    const edgeColor = { danger: '#FF2200', medium: '#FF9900', safe: '#2A2B2E' };
+
+                    const g = svg.append('g');
+
+                    // Direction quadrant labels
+                    const dirLabels = [
+                        { label: 'AHEAD', x: cx, y: 40 },
+                        { label: 'BEHIND', x: cx, y: H - 20 },
+                        { label: 'LEFT', x: 40, y: cy },
+                        { label: 'RIGHT', x: W - 40, y: cy },
+                    ];
+                    dirLabels.forEach(d => {
+                        g.append('text')
+                            .attr('x', d.x).attr('y', d.y)
+                            .attr('text-anchor', 'middle')
+                            .attr('fill', '#2A2B2E')
+                            .attr('font-size', 11)
+                            .attr('font-family', 'JetBrains Mono, monospace')
+                            .text(d.label);
+                    });
+
+                    // Proximity rings
+                    [0.25, 0.5, 0.75].forEach(r => {
+                        g.append('circle')
+                            .attr('cx', cx).attr('cy', cy)
+                            .attr('r', Math.min(W, H) * r * 0.45)
+                            .attr('fill', 'none')
+                            .attr('stroke', '#1A1B1E')
+                            .attr('stroke-width', 0.5);
+                    });
+
+                    // Show only 10 closest objects
+                    const visible = this.objects.slice(0, 10);
+                    const maxDist = Math.max(...visible.map(o => o.dist_m), 1);
+
+                    // Position each node by direction + distance
+                    const dirOffset = { ahead: -Math.PI / 2, right: 0, behind: Math.PI / 2, left: Math.PI };
+                    const spread = { ahead: 0.6, behind: 0.6, left: 0.6, right: 0.6 };
+
+                    // Group by direction to spread nodes within quadrant
+                    const dirGroups = {};
+                    visible.forEach(o => {
+                        if (!dirGroups[o.direction]) dirGroups[o.direction] = [];
+                        dirGroups[o.direction].push(o);
+                    });
+
+                    const nodePositions = {};
+                    Object.entries(dirGroups).forEach(([dir, objs]) => {
+                        const base = dirOffset[dir] || 0;
+                        const fan = spread[dir] || 0.6;
+                        const total = objs.length;
+                        objs.forEach((o, i) => {
+                            const angleOffset = total > 1
+                                ? fan * (i / (total - 1) - 0.5)
+                                : 0;
+                            const angle = base + angleOffset;
+                            const radius = (o.dist_m / maxDist) * Math.min(W, H) * 0.42;
+                            nodePositions[o.id] = {
+                                x: cx + radius * Math.cos(angle),
+                                y: cy + radius * Math.sin(angle),
+                            };
+                        });
+                    });
+
+                    // Draw edges from ego to each object
+                    visible.forEach(o => {
+                        const pos = nodePositions[o.id];
+                        if (!pos) return;
+                        g.append('line')
+                            .attr('x1', cx).attr('y1', cy)
+                            .attr('x2', pos.x).attr('y2', pos.y)
+                            .attr('stroke', edgeColor[o.risk] || '#2A2B2E')
+                            .attr('stroke-width', o.risk === 'danger' ? 1.5 : 0.5)
+                            .attr('opacity', o.risk === 'danger' ? 0.9 : 0.4);
+
+                        // Distance label on edge midpoint
+                        g.append('text')
+                            .attr('x', (cx + pos.x) / 2)
+                            .attr('y', (cy + pos.y) / 2)
+                            .attr('text-anchor', 'middle')
+                            .attr('fill', edgeColor[o.risk] || '#5C5E62')
+                            .attr('font-size', 9)
+                            .attr('font-family', 'JetBrains Mono, monospace')
+                            .text(o.dist);
+                    });
+
+                    // Draw object nodes
+                    visible.forEach(o => {
+                        const pos = nodePositions[o.id];
+                        if (!pos) return;
+                        const ng = g.append('g')
+                            .attr('transform', `translate(${pos.x},${pos.y})`)
+                            .style('cursor', 'pointer');
+
+                        ng.append('circle')
+                            .attr('r', o.risk === 'danger' ? 10 : 7)
+                            .attr('fill', nodeColor[o.node_type] || '#888')
+                            .attr('opacity', 0.85)
+                            .attr('stroke', edgeColor[o.risk])
+                            .attr('stroke-width', o.risk === 'danger' ? 2 : 0.5);
+
+                        ng.append('text')
+                            .attr('y', -14)
+                            .attr('text-anchor', 'middle')
+                            .attr('fill', '#E0E0E0')
+                            .attr('font-size', 9)
+                            .attr('font-family', 'JetBrains Mono, monospace')
+                            .text(o.label);
+
+                        ng.append('text')
+                            .attr('y', -5)
+                            .attr('text-anchor', 'middle')
+                            .attr('fill', '#5C5E62')
+                            .attr('font-size', 8)
+                            .attr('font-family', 'JetBrains Mono, monospace')
+                            .text(o.id);
+                    });
+
+                    // Ego vehicle node (center)
+                    const ego = g.append('g').attr('transform', `translate(${cx},${cy})`);
+                    ego.append('circle')
+                        .attr('r', 16)
+                        .attr('fill', '#00E5FF')
+                        .attr('opacity', 0.9)
+                        .attr('stroke', '#ffffff')
+                        .attr('stroke-width', 1);
+                    ego.append('text')
                         .attr('text-anchor', 'middle')
-                        .attr('fill', edgeColor[o.risk] || '#5C5E62')
-                        .attr('font-size', 9)
-                        .attr('font-family', 'JetBrains Mono, monospace')
-                        .text(o.dist);
-                });
-
-                // Draw object nodes
-                visible.forEach(o => {
-                    const pos = nodePositions[o.id];
-                    if (!pos) return;
-                    const ng = g.append('g')
-                        .attr('transform', `translate(${pos.x},${pos.y})`)
-                        .style('cursor', 'pointer');
-
-                    ng.append('circle')
-                        .attr('r', o.risk === 'danger' ? 10 : 7)
-                        .attr('fill', nodeColor[o.node_type] || '#888')
-                        .attr('opacity', 0.85)
-                        .attr('stroke', edgeColor[o.risk])
-                        .attr('stroke-width', o.risk === 'danger' ? 2 : 0.5);
-
-                    ng.append('text')
-                        .attr('y', -14)
-                        .attr('text-anchor', 'middle')
-                        .attr('fill', '#E0E0E0')
-                        .attr('font-size', 9)
-                        .attr('font-family', 'JetBrains Mono, monospace')
-                        .text(o.label);
-
-                    ng.append('text')
-                        .attr('y', -5)
-                        .attr('text-anchor', 'middle')
-                        .attr('fill', '#5C5E62')
+                        .attr('dominant-baseline', 'central')
+                        .attr('fill', '#000000')
                         .attr('font-size', 8)
+                        .attr('font-weight', '600')
                         .attr('font-family', 'JetBrains Mono, monospace')
-                        .text(o.id);
-                });
-
-                // Ego vehicle node (center)
-                const ego = g.append('g').attr('transform', `translate(${cx},${cy})`);
-                ego.append('circle')
-                    .attr('r', 16)
-                    .attr('fill', '#00E5FF')
-                    .attr('opacity', 0.9)
-                    .attr('stroke', '#ffffff')
-                    .attr('stroke-width', 1);
-                ego.append('text')
-                    .attr('text-anchor', 'middle')
-                    .attr('dominant-baseline', 'central')
-                    .attr('fill', '#000000')
-                    .attr('font-size', 8)
-                    .attr('font-weight', '600')
-                    .attr('font-family', 'JetBrains Mono, monospace')
-                    .text('EGO');
-            },
-            addLog(level, msg) {
-                const log = document.getElementById('event-log');
-                if (!log) return;
-                const now    = new Date();
-                const ts     = now.toTimeString().slice(0, 8);
-                const colors = { INFO: '#00FF66', WARN: '#FF9900', ERROR: '#FF2200' };
-                const color  = colors[level] || '#E0E0E0';
-                const entry  = document.createElement('div');
-                entry.className    = 'text-[#5C5E62]';
-                entry.innerHTML    = `[${ts}] <span style="color:${color}">${level}</span> ${msg}`;
-                // Insert before the blinking cursor (last child)
-                log.insertBefore(entry, log.lastElementChild);
-                log.scrollTop = log.scrollHeight;
-            },
-        }));
-    });
+                        .text('EGO');
+                },
+                addLog(level, msg) {
+                    const log = document.getElementById('event-log');
+                    if (!log) return;
+                    const now = new Date();
+                    const ts = now.toTimeString().slice(0, 8);
+                    const colors = { INFO: '#00FF66', WARN: '#FF9900', ERROR: '#FF2200' };
+                    const color = colors[level] || '#E0E0E0';
+                    const entry = document.createElement('div');
+                    entry.className = 'text-[#5C5E62]';
+                    entry.innerHTML = `[${ts}] <span style="color:${color}">${level}</span> ${msg}`;
+                    // Insert before the blinking cursor (last child)
+                    log.insertBefore(entry, log.lastElementChild);
+                    log.scrollTop = log.scrollHeight;
+                },
+            }));
+        });
     </script>
 
     <!-- ── Vis.js Knowledge Graph Script ─────────────────────────────── -->
     <script>
-    // ── Color system (mirrors frontend/graph.js) ──
-    const KG_CATEGORY_COLORS = {
-        'vehicle.car':                '#3b82f6',
-        'vehicle.truck':              '#2563eb',
-        'vehicle.bus.rigid':          '#1d4ed8',
-        'vehicle.bus.bendy':          '#1e40af',
-        'vehicle.construction':       '#f59e0b',
-        'vehicle.motorcycle':         '#8b5cf6',
-        'vehicle.bicycle':            '#a78bfa',
-        'vehicle.trailer':            '#6366f1',
-        'vehicle.emergency.ambulance':'#ef4444',
-        'vehicle.emergency.police':   '#dc2626',
-        'human.pedestrian.adult':     '#f87171',
-        'human.pedestrian.child':     '#fca5a5',
-        'human.pedestrian.construction_worker': '#fb923c',
-        'human.pedestrian.police_officer':      '#f97316',
-        'movable_object.barrier':     '#6b7280',
-        'movable_object.trafficcone': '#f59e0b',
-        'movable_object.pushable_pullable': '#9ca3af',
-        'movable_object.debris':      '#4b5563',
-        'static_object.bicycle_rack': '#64748b',
-    };
-    const KG_DEFAULT_COLOR = '#94a3b8';
+        // ── Color system (mirrors frontend/graph.js) ──
+        const KG_CATEGORY_COLORS = {
+            'vehicle.car': '#3b82f6',
+            'vehicle.truck': '#2563eb',
+            'vehicle.bus.rigid': '#1d4ed8',
+            'vehicle.bus.bendy': '#1e40af',
+            'vehicle.construction': '#f59e0b',
+            'vehicle.motorcycle': '#8b5cf6',
+            'vehicle.bicycle': '#a78bfa',
+            'vehicle.trailer': '#6366f1',
+            'vehicle.emergency.ambulance': '#ef4444',
+            'vehicle.emergency.police': '#dc2626',
+            'human.pedestrian.adult': '#f87171',
+            'human.pedestrian.child': '#fca5a5',
+            'human.pedestrian.construction_worker': '#fb923c',
+            'human.pedestrian.police_officer': '#f97316',
+            'movable_object.barrier': '#6b7280',
+            'movable_object.trafficcone': '#f59e0b',
+            'movable_object.pushable_pullable': '#9ca3af',
+            'movable_object.debris': '#4b5563',
+            'static_object.bicycle_rack': '#64748b',
+        };
+        const KG_DEFAULT_COLOR = '#94a3b8';
 
-    function kgGetColor(category) {
-        if (!category) return KG_DEFAULT_COLOR;
-        if (KG_CATEGORY_COLORS[category]) return KG_CATEGORY_COLORS[category];
-        for (const key of Object.keys(KG_CATEGORY_COLORS)) {
-            if (category.startsWith(key) || key.startsWith(category)) return KG_CATEGORY_COLORS[key];
-        }
-        return KG_DEFAULT_COLOR;
-    }
-
-    function kgShortCategory(cat) {
-        if (!cat) return '?';
-        return cat.split('.').pop();
-    }
-
-    // ── vis.js network setup ──
-    let kgNetwork = null;
-    const kgVisNodes = new vis.DataSet();
-    const kgVisEdges = new vis.DataSet();
-
-    function kgInitNetwork() {
-        const container = document.getElementById('kg-vis-container');
-        if (!container || kgNetwork) return;
-        kgNetwork = new vis.Network(
-            container,
-            { nodes: kgVisNodes, edges: kgVisEdges },
-            {
-                physics: false,
-                nodes: {
-                    shape: 'dot',
-                    size: 14,
-                    font: { color: '#ccc', size: 11, face: 'JetBrains Mono, monospace' },
-                    borderWidth: 2,
-                },
-                edges: {
-                    color: { color: '#2A2B2E', highlight: '#00E5FF' },
-                    font: { color: '#5C5E62', size: 9, strokeWidth: 0, face: 'JetBrains Mono, monospace' },
-                    smooth: { type: 'continuous' },
-                },
-                interaction: { hover: true, tooltipDelay: 100 },
-                background: { fill: '#000000' },
+        function kgGetColor(category) {
+            if (!category) return KG_DEFAULT_COLOR;
+            if (KG_CATEGORY_COLORS[category]) return KG_CATEGORY_COLORS[category];
+            for (const key of Object.keys(KG_CATEGORY_COLORS)) {
+                if (category.startsWith(key) || key.startsWith(category)) return KG_CATEGORY_COLORS[key];
             }
-        );
-        kgNetwork.on('click', function(params) {
-            if (params.nodes.length) kgShowNodeInfo(params.nodes[0]);
-            else if (params.edges.length) kgShowEdgeInfo(params.edges[0]);
-        });
-    }
+            return KG_DEFAULT_COLOR;
+        }
 
-    // ── state ──
-    let kgWs = null;
-    let kgLastData = null;
-    let kgIsPaused = false;
-    const kgHiddenCategories = new Set();
-    const kgAllCategories = new Set();
+        function kgShortCategory(cat) {
+            if (!cat) return '?';
+            return cat.split('.').pop();
+        }
 
-    function kgSend(obj) {
-        if (kgWs && kgWs.readyState === WebSocket.OPEN) kgWs.send(JSON.stringify(obj));
-    }
+        // ── vis.js network setup ──
+        let kgNetwork = null;
+        const kgVisNodes = new vis.DataSet();
+        const kgVisEdges = new vis.DataSet();
 
-    // ── playback controls ──
-    function kgTogglePlay() {
-        kgIsPaused = !kgIsPaused;
-        kgSend({ action: kgIsPaused ? 'pause' : 'play' });
-        kgUpdateButtons();
-    }
+        function kgInitNetwork() {
+            const container = document.getElementById('kg-vis-container');
+            if (!container || kgNetwork) return;
+            kgNetwork = new vis.Network(
+                container,
+                { nodes: kgVisNodes, edges: kgVisEdges },
+                {
+                    physics: false,
+                    nodes: {
+                        shape: 'dot',
+                        size: 14,
+                        font: { color: '#ccc', size: 11, face: 'JetBrains Mono, monospace' },
+                        borderWidth: 2,
+                    },
+                    edges: {
+                        color: { color: '#2A2B2E', highlight: '#00E5FF' },
+                        font: { color: '#5C5E62', size: 9, strokeWidth: 0, face: 'JetBrains Mono, monospace' },
+                        smooth: { type: 'continuous' },
+                    },
+                    interaction: { hover: true, tooltipDelay: 100 },
+                    background: { fill: '#000000' },
+                }
+            );
+            kgNetwork.on('click', function (params) {
+                if (params.nodes.length) kgShowNodeInfo(params.nodes[0]);
+                else if (params.edges.length) kgShowEdgeInfo(params.edges[0]);
+            });
+        }
 
-    function kgStepFrame(delta) {
-        if (!kgIsPaused) return;
-        kgSend({ action: 'step', delta });
-    }
+        // ── state ──
+        let kgWs = null;
+        let kgLastData = null;
+        let kgIsPaused = false;
+        const kgHiddenCategories = new Set();
+        const kgAllCategories = new Set();
 
-    function kgUpdateButtons() {
-        const btn = document.getElementById('kg-btn-play');
-        if (!btn) return;
-        btn.textContent = kgIsPaused ? '▶ PLAY' : '⏸ PAUSE';
-        btn.classList.toggle('active', !kgIsPaused);
-        const prev = document.getElementById('kg-btn-prev');
-        const next = document.getElementById('kg-btn-next');
-        if (prev) prev.disabled = !kgIsPaused;
-        if (next) next.disabled = !kgIsPaused;
-    }
+        function kgSend(obj) {
+            if (kgWs && kgWs.readyState === WebSocket.OPEN) kgWs.send(JSON.stringify(obj));
+        }
 
-    // ── category filter ──
-    function kgToggleCategory(cat) {
-        if (kgHiddenCategories.has(cat)) kgHiddenCategories.delete(cat);
-        else kgHiddenCategories.add(cat);
-        if (kgLastData) kgRenderGraph(kgLastData);
-    }
+        // ── playback controls ──
+        function kgTogglePlay() {
+            kgIsPaused = !kgIsPaused;
+            kgSend({ action: kgIsPaused ? 'pause' : 'play' });
+            kgUpdateButtons();
+        }
 
-    function kgBuildFilters() {
-        const list = document.getElementById('kg-filter-list');
-        if (!list) return;
-        list.innerHTML = '';
-        const legendEl = document.getElementById('kg-legend-container');
-        if (legendEl) legendEl.innerHTML = '';
-        for (const cat of [...kgAllCategories].sort()) {
-            const checked = !kgHiddenCategories.has(cat) ? 'checked' : '';
-            const color = kgGetColor(cat);
-            const short = kgShortCategory(cat);
-            list.innerHTML += `
+        function kgStepFrame(delta) {
+            if (!kgIsPaused) return;
+            kgSend({ action: 'step', delta });
+        }
+
+        function kgUpdateButtons() {
+            const btn = document.getElementById('kg-btn-play');
+            if (!btn) return;
+            btn.textContent = kgIsPaused ? '▶ PLAY' : '⏸ PAUSE';
+            btn.classList.toggle('active', !kgIsPaused);
+            const prev = document.getElementById('kg-btn-prev');
+            const next = document.getElementById('kg-btn-next');
+            if (prev) prev.disabled = !kgIsPaused;
+            if (next) next.disabled = !kgIsPaused;
+        }
+
+        // ── category filter ──
+        function kgToggleCategory(cat) {
+            if (kgHiddenCategories.has(cat)) kgHiddenCategories.delete(cat);
+            else kgHiddenCategories.add(cat);
+            if (kgLastData) kgRenderGraph(kgLastData);
+        }
+
+        function kgBuildFilters() {
+            const list = document.getElementById('kg-filter-list');
+            if (!list) return;
+            list.innerHTML = '';
+            const legendEl = document.getElementById('kg-legend-container');
+            if (legendEl) legendEl.innerHTML = '';
+            for (const cat of [...kgAllCategories].sort()) {
+                const checked = !kgHiddenCategories.has(cat) ? 'checked' : '';
+                const color = kgGetColor(cat);
+                const short = kgShortCategory(cat);
+                list.innerHTML += `
                 <label class="kg-filter-item">
                     <input type="checkbox" ${checked} onchange="kgToggleCategory('${cat}')">
                     <span class="kg-legend-dot" style="background:${color}"></span>
                     ${short}
                 </label>`;
-            if (legendEl) {
-                legendEl.innerHTML += `
+                if (legendEl) {
+                    legendEl.innerHTML += `
                     <div class="flex items-center gap-2">
                         <span class="kg-legend-dot" style="background:${color}"></span>
                         <span style="color:#9CA3AF">${short}</span>
                     </div>`;
+                }
             }
         }
-    }
 
-    // ── render ──
-    const KG_SCALE = 8;
+        // ── render ──
+        const KG_SCALE = 8;
 
-    function kgRenderGraph(data) {
-        kgLastData = data;
+        function kgRenderGraph(data) {
+            kgLastData = data;
 
-        const filteredNodes = data.nodes.filter(n => !kgHiddenCategories.has(n.category));
-        const filteredIds = new Set(filteredNodes.map(n => n.id));
-        const filteredEdges = data.edges.filter(e => filteredIds.has(e.to));
+            const filteredNodes = data.nodes.filter(n => !kgHiddenCategories.has(n.category));
+            const filteredIds = new Set(filteredNodes.map(n => n.id));
+            const filteredEdges = data.edges.filter(e => filteredIds.has(e.to));
 
-        const newNodes = [{
-            id: 'ego', label: 'EGO', x: 0, y: 0, fixed: true, size: 22,
-            color: { background: '#00E5FF', border: '#ffffff' },
-            font: { color: '#000', size: 13, bold: true, face: 'JetBrains Mono, monospace' },
-        }];
+            const newNodes = [{
+                id: 'ego', label: 'EGO', x: 0, y: 0, fixed: true, size: 22,
+                color: { background: '#00E5FF', border: '#ffffff' },
+                font: { color: '#000', size: 13, bold: true, face: 'JetBrains Mono, monospace' },
+            }];
 
-        for (const n of filteredNodes) {
-            const c = kgGetColor(n.category);
-            newNodes.push({
-                id: n.id,
-                label: kgShortCategory(n.category),
-                x: n.rel_x * KG_SCALE,
-                y: -n.rel_y * KG_SCALE,
-                fixed: true,
-                color: { background: c, border: c },
-                font: { color: '#ccc', size: 10, face: 'JetBrains Mono, monospace' },
+            for (const n of filteredNodes) {
+                const c = kgGetColor(n.category);
+                newNodes.push({
+                    id: n.id,
+                    label: kgShortCategory(n.category),
+                    x: n.rel_x * KG_SCALE,
+                    y: -n.rel_y * KG_SCALE,
+                    fixed: true,
+                    color: { background: c, border: c },
+                    font: { color: '#ccc', size: 10, face: 'JetBrains Mono, monospace' },
+                });
+            }
+
+            const newEdges = filteredEdges.map((e, i) => {
+                const zone = e.zone || '';
+                const edgeColor = zone === 'danger' ? '#FF2200' : zone === 'medium' ? '#FF9900' : '#2A2B2E';
+                return {
+                    id: `e-${i}`, from: e.from, to: e.to,
+                    label: `${e.distance}m`,
+                    title: `${e.zone} · ${e.direction}`,
+                    color: { color: edgeColor, highlight: '#00E5FF' },
+                    width: zone === 'danger' ? 2 : 0.5,
+                };
+            });
+
+            kgVisNodes.clear();
+            kgVisEdges.clear();
+            kgVisNodes.add(newNodes);
+            kgVisEdges.add(newEdges);
+
+            // Update stats
+            const visible = filteredNodes.length;
+            const total = data.nodes.length;
+            const danger = data.edges.filter(e => e.zone === 'danger').length;
+            const medium = data.edges.filter(e => e.zone === 'medium').length;
+
+            const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            setEl('kg-stat-visible', visible);
+            setEl('kg-stat-total', total);
+            setEl('kg-stat-edges', filteredEdges.length);
+            setEl('kg-stat-danger', danger);
+            setEl('kg-stat-medium', medium);
+        }
+
+        // ── info panel ──
+        function kgMakeTable(obj) {
+            return `<table class="kg-prop-table">${Object.entries(obj).map(([k, v]) =>
+                `<tr><td>${k}</td><td>${v ?? '—'}</td></tr>`
+            ).join('')
+                }</table>`;
+        }
+
+        function kgShowNodeInfo(nodeId) {
+            const panel = document.getElementById('kg-panel-content');
+            if (!panel) return;
+            if (nodeId === 'ego' && kgLastData?.ego) {
+                const e = kgLastData.ego;
+                panel.innerHTML = kgMakeTable({ Type: 'Ego Vehicle', X: e.x?.toFixed(2), Y: e.y?.toFixed(2), Timestamp: e.timestamp });
+                return;
+            }
+            const n = kgLastData?.nodes.find(n => n.id === nodeId);
+            if (!n) return;
+            panel.innerHTML = kgMakeTable({
+                Category: kgShortCategory(n.category),
+                'Full Cat.': n.category,
+                'Rel X': n.rel_x?.toFixed(2),
+                'Rel Y': n.rel_y?.toFixed(2),
+                'Vel X': n.vel_x?.toFixed(2),
+                'Vel Y': n.vel_y?.toFixed(2),
             });
         }
 
-        const newEdges = filteredEdges.map((e, i) => {
-            const zone = e.zone || '';
-            const edgeColor = zone === 'danger' ? '#FF2200' : zone === 'medium' ? '#FF9900' : '#2A2B2E';
-            return {
-                id: `e-${i}`, from: e.from, to: e.to,
-                label: `${e.distance}m`,
-                title: `${e.zone} · ${e.direction}`,
-                color: { color: edgeColor, highlight: '#00E5FF' },
-                width: zone === 'danger' ? 2 : 0.5,
-            };
-        });
-
-        kgVisNodes.clear();
-        kgVisEdges.clear();
-        kgVisNodes.add(newNodes);
-        kgVisEdges.add(newEdges);
-
-        // Update stats
-        const visible = filteredNodes.length;
-        const total = data.nodes.length;
-        const danger = data.edges.filter(e => e.zone === 'danger').length;
-        const medium = data.edges.filter(e => e.zone === 'medium').length;
-
-        const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-        setEl('kg-stat-visible', visible);
-        setEl('kg-stat-total', total);
-        setEl('kg-stat-edges', filteredEdges.length);
-        setEl('kg-stat-danger', danger);
-        setEl('kg-stat-medium', medium);
-    }
-
-    // ── info panel ──
-    function kgMakeTable(obj) {
-        return `<table class="kg-prop-table">${
-            Object.entries(obj).map(([k,v]) =>
-                `<tr><td>${k}</td><td>${v ?? '—'}</td></tr>`
-            ).join('')
-        }</table>`;
-    }
-
-    function kgShowNodeInfo(nodeId) {
-        const panel = document.getElementById('kg-panel-content');
-        if (!panel) return;
-        if (nodeId === 'ego' && kgLastData?.ego) {
-            const e = kgLastData.ego;
-            panel.innerHTML = kgMakeTable({ Type: 'Ego Vehicle', X: e.x?.toFixed(2), Y: e.y?.toFixed(2), Timestamp: e.timestamp });
-            return;
+        function kgShowEdgeInfo(edgeId) {
+            const panel = document.getElementById('kg-panel-content');
+            if (!panel) return;
+            const idx = parseInt(edgeId.replace('e-', ''), 10);
+            const filteredEdges = kgLastData?.edges.filter(e => {
+                const n = kgLastData.nodes.find(n => n.id === e.to);
+                return n && !kgHiddenCategories.has(n.category);
+            });
+            const e = filteredEdges?.[idx];
+            if (!e) return;
+            panel.innerHTML = kgMakeTable({
+                From: e.from,
+                To: kgShortCategory(kgLastData.nodes.find(n => n.id === e.to)?.category),
+                Distance: e.distance + ' m',
+                Zone: e.zone,
+                Direction: e.direction,
+            });
         }
-        const n = kgLastData?.nodes.find(n => n.id === nodeId);
-        if (!n) return;
-        panel.innerHTML = kgMakeTable({
-            Category: kgShortCategory(n.category),
-            'Full Cat.': n.category,
-            'Rel X': n.rel_x?.toFixed(2),
-            'Rel Y': n.rel_y?.toFixed(2),
-            'Vel X': n.vel_x?.toFixed(2),
-            'Vel Y': n.vel_y?.toFixed(2),
+
+        // ── WebSocket ──
+        function kgConnect() {
+            const statusEl = document.getElementById('kg-vis-status');
+            const frameEl = document.getElementById('kg-frame-info');
+            const counterEl = document.getElementById('kg-frame-counter');
+            const labelEl = document.getElementById('kg-frame-counter-label');
+
+            kgWs = new WebSocket('ws://localhost:8001/ws/graph');
+
+            kgWs.onopen = () => {
+                if (statusEl) { statusEl.textContent = '● LIVE'; statusEl.style.color = '#00FF66'; }
+                kgInitNetwork();
+                if (kgIsPaused) kgSend({ action: 'pause' });
+            };
+
+            kgWs.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+
+                for (const n of data.nodes) kgAllCategories.add(n.category);
+                kgBuildFilters();
+
+                if (data.paused !== undefined && data.paused !== kgIsPaused) {
+                    kgIsPaused = data.paused;
+                    kgUpdateButtons();
+                }
+
+                kgRenderGraph(data);
+
+                const ts = data.ego?.timestamp;
+                const time = ts ? new Date(ts * 1000).toLocaleTimeString() : '';
+                const visible = data.nodes.filter(n => !kgHiddenCategories.has(n.category)).length;
+                if (frameEl) frameEl.textContent = `${visible}/${data.nodes.length} objects · ${time}`;
+
+                const fi = data.frame_index;
+                const ft = data.frame_total;
+                if (counterEl) counterEl.textContent = fi >= 0 ? `Frame ${fi + 1} / ${ft}` : '';
+                if (labelEl) labelEl.textContent = fi >= 0 ? fi + 1 : '—';
+            };
+
+            kgWs.onclose = () => {
+                if (statusEl) { statusEl.textContent = '● DISCONNECTED'; statusEl.style.color = '#FF2200'; }
+                setTimeout(kgConnect, 2000);
+            };
+
+            kgWs.onerror = () => kgWs.close();
+        }
+
+        // Init the network DOM element lazily when the tab first becomes visible,
+        // then connect via WebSocket.
+        window.addEventListener('load', () => {
+            // Give Alpine.js time to mount, then init
+            setTimeout(() => {
+                kgInitNetwork();
+                kgConnect();
+            }, 500);
         });
-    }
 
-    function kgShowEdgeInfo(edgeId) {
-        const panel = document.getElementById('kg-panel-content');
-        if (!panel) return;
-        const idx = parseInt(edgeId.replace('e-', ''), 10);
-        const filteredEdges = kgLastData?.edges.filter(e => {
-            const n = kgLastData.nodes.find(n => n.id === e.to);
-            return n && !kgHiddenCategories.has(n.category);
-        });
-        const e = filteredEdges?.[idx];
-        if (!e) return;
-        panel.innerHTML = kgMakeTable({
-            From: e.from,
-            To: kgShortCategory(kgLastData.nodes.find(n => n.id === e.to)?.category),
-            Distance: e.distance + ' m',
-            Zone: e.zone,
-            Direction: e.direction,
-        });
-    }
-
-    // ── WebSocket ──
-    function kgConnect() {
-        const statusEl  = document.getElementById('kg-vis-status');
-        const frameEl   = document.getElementById('kg-frame-info');
-        const counterEl = document.getElementById('kg-frame-counter');
-        const labelEl   = document.getElementById('kg-frame-counter-label');
-
-        kgWs = new WebSocket('ws://localhost:8001/ws/graph');
-
-        kgWs.onopen = () => {
-            if (statusEl) { statusEl.textContent = '● LIVE'; statusEl.style.color = '#00FF66'; }
-            kgInitNetwork();
-            if (kgIsPaused) kgSend({ action: 'pause' });
-        };
-
-        kgWs.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-
-            for (const n of data.nodes) kgAllCategories.add(n.category);
-            kgBuildFilters();
-
-            if (data.paused !== undefined && data.paused !== kgIsPaused) {
-                kgIsPaused = data.paused;
-                kgUpdateButtons();
-            }
-
-            kgRenderGraph(data);
-
-            const ts = data.ego?.timestamp;
-            const time = ts ? new Date(ts * 1000).toLocaleTimeString() : '';
-            const visible = data.nodes.filter(n => !kgHiddenCategories.has(n.category)).length;
-            if (frameEl) frameEl.textContent = `${visible}/${data.nodes.length} objects · ${time}`;
-
-            const fi = data.frame_index;
-            const ft = data.frame_total;
-            if (counterEl) counterEl.textContent = fi >= 0 ? `Frame ${fi + 1} / ${ft}` : '';
-            if (labelEl)   labelEl.textContent   = fi >= 0 ? fi + 1 : '—';
-        };
-
-        kgWs.onclose = () => {
-            if (statusEl) { statusEl.textContent = '● DISCONNECTED'; statusEl.style.color = '#FF2200'; }
-            setTimeout(kgConnect, 2000);
-        };
-
-        kgWs.onerror = () => kgWs.close();
-    }
-
-    // Init the network DOM element lazily when the tab first becomes visible,
-    // then connect via WebSocket.
-    window.addEventListener('load', () => {
-        // Give Alpine.js time to mount, then init
-        setTimeout(() => {
-            kgInitNetwork();
-            kgConnect();
-        }, 500);
-    });
-
-    // Expose to HTML onclick handlers
-    window.kgTogglePlay    = kgTogglePlay;
-    window.kgStepFrame     = kgStepFrame;
-    window.kgToggleCategory = kgToggleCategory;
+        // Expose to HTML onclick handlers
+        window.kgTogglePlay = kgTogglePlay;
+        window.kgStepFrame = kgStepFrame;
+        window.kgToggleCategory = kgToggleCategory;
     </script>
 
 </body>
+
 </html>
